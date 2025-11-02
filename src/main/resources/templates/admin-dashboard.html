@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin-dashboard-layout}"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - Home</title>
+</head>
+<body>
+<section layout:fragment="section">
+    <div class="section-main-container">
+        <div class="section-main-header">
+            <h2 class="welcome-text">Welcome, Hassam</h2>
+            <p class="current-date"><svg xmlns="http://www.w3.org/2000/svg" width="1.35em" height="1.35em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-days-icon lucide-calendar-days"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg><span id="date"></span></p>
+            <script>
+                const formattedDate = new Date().toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                document.getElementById('date').textContent = formattedDate;
+            </script>
+        </div>
+        <div class="section-overview-container" >
+            <div class="section-overview">
+                <div class="overview-item products">
+                    <div>
+                        <h2>Products</h2>
+                        <h1>120</h1>
+                    </div>
+                    <div class="overview-svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="80px" viewBox="0 -960 960 960" width="80px" fill="currentColor"><path d="M200-80q-33 0-56.5-23.5T120-160v-480q0-33 23.5-56.5T200-720h80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720h80q33 0 56.5 23.5T840-640v480q0 33-23.5 56.5T760-80H200Zm0-80h560v-480H200v480Zm280-240q83 0 141.5-58.5T680-600h-80q0 50-35 85t-85 35q-50 0-85-35t-35-85h-80q0 83 58.5 141.5T480-400ZM360-720h240q0-50-35-85t-85-35q-50 0-85 35t-35 85ZM200-160v-480 480Z"/></svg>
+                    </div>
+                </div>
+                <div class="overview-item orders">
+                    <div>
+                        <h2>Orders</h2>
+                        <h1>20</h1>
+                    </div>
+                    <div class="overview-svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80px" height="80px" viewBox="0 0 24 24" fill="none"  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-arrow-down-icon lucide-clock-arrow-down"><path d="M12 6v6l2 1"/><path d="M12.337 21.994a10 10 0 1 1 9.588-8.767"/><path d="m14 18 4 4 4-4"/><path d="M18 14v8"/></svg>
+                    </div>
+                </div>
+                <div class="overview-item users">
+                    <div>
+                        <h2>Users</h2>
+                        <h1>25</h1>
+                    </div>
+                    <div class="overview-svg">
+                        <svg xmlns="http://www.w3.org/2000/svg"  width="80px" height="80px" viewBox="0 0 24 24" fill="none"  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-round-icon lucide-users-round"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></svg>
+                    </div>
+                </div>
+                <div class="overview-item revenue">
+                    <div>
+                        <h2>Revenue</h2>
+                        <h1>Rs1,00,000</h1>
+                    </div>
+                    <div class="overview-svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80px" height="80px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dollar-sign-icon lucide-circle-dollar-sign"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg></div>
+                </div>
+                <div class="overview-item admins">
+                    <div>
+                        <h2>Admins</h2>
+                        <h1>3</h1>
+                    </div>
+                    <div class="overview-svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80px" height="80px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-userEntity-icon lucide-shield-userEntity"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M6.376 18.91a6 6 0 0 1 11.249.003"/><circle cx="12" cy="11" r="4"/></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-summarytable-container">
+            <div class="top-tables">
+                <div>
+                    <h2 class="table-name">Top Products</h2>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <div class="product-name-image">
+                                        <span class="product-image-span">
+                                        <img class="image-inspan" src="https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/opn/opn02866/g/100.jpg"></span>
+                                        <p>Optimum Nutrition, Gold Standard® 100% Whey Protein, Double Rich Chocolate, 5.05 lb (2.29 kg) </p>
+                                    </div>
+                                </td>
+                                <td>₨21,777.38</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <div class="product-name-image">
+                                        <span class="product-image-span">
+                                        <img class="image-inspan" src="https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/msf/msf70386/g/58.jpg"></span>
+                                        <p>MusclePharm, Combat® Protein Powder, Chocolate Milk , 4.2 lbs (1.9 kg) </p>
+                                    </div>
+                                </td>
+                                <td>₨29,792.76</td>
+                                <td>15</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>
+                                    <div class="product-name-image">
+                                        <span class="product-image-span">
+                                        <img class="image-inspan" src="https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/pnb/pnb00028/g/51.jpg"></span>
+                                        <p>Peanut Butter & Co., Old Fashioned Crunchy, Peanut Butter, 16 oz (454 g)  </p>
+                                    </div>
+                                </td>
+                                <td>₨2,362.83</td>
+                                <td>60</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <a th:href="@{/admin/dashboard/products}" class="view-more">View more</a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="table-name">Recent Orders</h2>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Customer</th>
+                                <th>Date Ordered</th>
+                                <th>Total</th>
+                                <th>Delivery Date</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Muhammad Hassam</td>
+                                <td>1/11/2025</td>
+                                <td>₨21,777.38</td>
+                                <td>7/11/2025</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Umer Fayyaz</td>
+                                <td>4/11/2025</td>
+                                <td>₨29,792.76</td>
+                                <td>11/11/2025</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Sufyan Khalid</td>
+                                <td>10/11/2025</td>
+                                <td>₨2,362.83</td>
+                                <td>17/11/2025</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Talha Jamal</td>
+                                <td>10/11/2025</td>
+                                <td>₨2,362.83</td>
+                                <td>17/11/2025</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Sheryar</td>
+                                <td>10/11/2025</td>
+                                <td>₨2,362.83</td>
+                                <td>17/11/2025</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <a th:href="@{/admin/dashboard/orders}" class="view-more">View more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

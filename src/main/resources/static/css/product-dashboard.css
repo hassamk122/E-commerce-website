@@ -1,0 +1,65 @@
+.btn-edit, .btn-delete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  margin: 0 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.create-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+.products-total{
+       font-family: "Poppins", sans-serif;
+    font-weight: 700;
+     color: #4747A1;
+}
+.create-btn{
+      font-family: "Poppins", sans-serif;
+    background-color: hsl(241, 72%, 69%);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    &:hover{
+        background-color: hsl(232, 72%, 69%);
+    }
+}
+.btn-edit {
+  background-color: #ffffff;
+  border: 2px solid #7978E9;
+  color: rgb(0, 0, 0);
+}
+
+.btn-edit:hover {
+    color: white;
+  background-color: #7978E9;
+}
+.btn-edit:hover svg{
+    stroke: white;
+}
+
+
+.btn-delete {
+  background-color: #ef4444;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #dc2626;
+}
+
+.btn-edit svg{
+ color: #7978E9;
+}
+.btn-delete svg{
+    stroke: white;
+}
