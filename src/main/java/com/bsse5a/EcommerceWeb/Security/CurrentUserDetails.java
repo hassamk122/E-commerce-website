@@ -8,11 +8,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-public class CustomUserDetails implements UserDetails {
+public class CurrentUserDetails implements UserDetails {
 
     private final UserEntity userEntity;
 
-    public CustomUserDetails(UserEntity userEntity){
+    public CurrentUserDetails(UserEntity userEntity){
         this.userEntity = userEntity;
     }
 

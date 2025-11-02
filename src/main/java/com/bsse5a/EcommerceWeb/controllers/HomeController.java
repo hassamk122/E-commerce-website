@@ -1,6 +1,6 @@
 package com.bsse5a.EcommerceWeb.controllers;
 
-import com.bsse5a.EcommerceWeb.Security.CustomUserDetails;
+import com.bsse5a.EcommerceWeb.Security.CurrentUserDetails;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +15,9 @@ public class HomeController {
     }
 
     @GetMapping("/home")
-    public String getHome(@AuthenticationPrincipal CustomUserDetails customUserDetails, Model model){
-        model.addAttribute("name", customUserDetails.getName());
-        model.addAttribute("email", customUserDetails.getEmail());
+    public String getHome(@AuthenticationPrincipal CurrentUserDetails currentUserDetails, Model model){
+        model.addAttribute("name", currentUserDetails.getName());
+        model.addAttribute("email", currentUserDetails.getEmail());
         return "Homepage";
     }
 }

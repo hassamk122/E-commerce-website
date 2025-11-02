@@ -1,6 +1,6 @@
 package com.bsse5a.EcommerceWeb.services;
 
-import com.bsse5a.EcommerceWeb.Security.CustomUserDetails;
+import com.bsse5a.EcommerceWeb.Security.CurrentUserDetails;
 import com.bsse5a.EcommerceWeb.models.UserEntity;
 import com.bsse5a.EcommerceWeb.respositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
+public class CurrentUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -22,6 +22,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         String role = "ROLE_"+userEntity.getRole().name();
 
-        return new CustomUserDetails(userEntity);
+        return new CurrentUserDetails(userEntity);
     }
 }

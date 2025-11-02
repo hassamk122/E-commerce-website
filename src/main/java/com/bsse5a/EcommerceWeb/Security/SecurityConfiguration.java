@@ -1,11 +1,9 @@
 package com.bsse5a.EcommerceWeb.Security;
 
-import com.bsse5a.EcommerceWeb.services.CustomUserDetailsService;
+import com.bsse5a.EcommerceWeb.services.CurrentUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,7 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfiguration {
 
     @Autowired
-    private CustomUserDetailsService customUserDetailsService;
+    private CurrentUserDetailsService currentUserDetailsService;
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -27,6 +25,7 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         httpSecurity
+                .userDetailsService(currentUserDetailsService)
                 .authorizeHttpRequests(auth->auth
                         .requestMatchers("/", "/register", "/login", "/css/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
