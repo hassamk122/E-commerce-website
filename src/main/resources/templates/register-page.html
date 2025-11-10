@@ -105,6 +105,23 @@
             <label for="password">Password</label>
             <input type="password" id="password" th:field="*{password}" placeholder="Enter password" required>
             <div th:if="${#fields.hasErrors('password')}" class="error" th:errors="*{password}"></div>
+            <br><br>
+            <input type="password" id="confirm-password"  placeholder="Confirm password" required>
+            <br>
+            <p  id="confirm-password-error" style="color:red;" ></p>
+            <script>
+                document.getElementById('confirm-password').addEventListener('input', function() {
+                  const pass = document.getElementById('password').value;
+                  const confirm = this.value;
+                  const error = document.getElementById('confirm-password-error');
+
+                  if (confirm !== pass) {
+                    error.textContent = "Passwords do not match";
+                  } else {
+                    error.textContent = "";
+                  }
+                });
+            </script>
         </div>
 
         <button type="submit">Register</button>
