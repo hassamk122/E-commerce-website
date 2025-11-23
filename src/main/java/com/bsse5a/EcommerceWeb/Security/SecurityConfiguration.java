@@ -29,7 +29,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth->auth
                         .requestMatchers("/", "/register",
                                 "/products","/contactus", "/warranty-policy",
-                                "/terms-of-services","/shipping-info","/return-and-refund",
+                                "/terms-and-services","/shipping-info","/return-and-refund",
                                 "/login","/home","/aboutus", "/css/**","/images/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/home/**").hasAnyRole("USER","ADMIN")

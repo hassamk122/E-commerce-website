@@ -14,7 +14,7 @@ public class StaticPagesController {
     public String showContactUs(){
         return "contact-us";
     }
-    @GetMapping("/terms-of-services")
+    @GetMapping("/terms-and-services")
     public String showTermsAndConditions(){
         return "terms-and-services";
     }
