@@ -21,7 +21,7 @@ public class RegisterController {
     @GetMapping("/register")
     public String getRegister(Model model){
         model.addAttribute("user", new UserRegistrationDto());
-        return "register-page";
+        return "signup";
     }
 
 
@@ -31,7 +31,7 @@ public class RegisterController {
                                    Model model
                                    ){
             if(bindingResult.hasErrors()){
-                return "register-page";
+                return "signup";
             }
             System.out.println(userDto);
             userService.registerUser(userDto);

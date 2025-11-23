@@ -93,15 +93,13 @@
             position: relative;
             display: flex;
         }
-
-        .search-box input {
+.search-box input {
             width: 100%;
             padding: 10px 15px;
             border: none;
             border-radius: 0;
             outline: none;
         }
-
         .search-box button {
             background-color: var(--accent-color);
             color: white;
@@ -110,17 +108,13 @@
             border-radius: 0;
             cursor: pointer;
         }
-
-        .search-box button:hover {
-            background-color: #d32f2f;
-        }
+        .search-box button:hover { background-color: #d32f2f; }
 
         /* Icons */
         .nav-icons {
             display: flex;
             align-items: center;
         }
-
         .nav-icons a {
             margin-left: 20px;
             font-size: 1.2rem;
@@ -137,21 +131,18 @@
             justify-content: center;
             line-height: 1.2;
         }
-
         .user-info p {
             font-size: 0.9rem;
             font-weight: 600;
             color: var(--secondary-color);
             margin: 0;
         }
-
         .logout-btn p {
             font-size: 0.9rem;
             font-weight: 600;
             color: var(--secondary-color);
             margin: 0;
         }
-
         .user-info h1 {
             font-size: 0.75rem;
             font-weight: 400;
@@ -171,11 +162,9 @@
             gap: 4px;
             transition: background-color 0.3s;
         }
-
         .logout-btn:hover {
             background-color: #d32f2f;
         }
-
         .logout-btn i {
             font-size: 0.8rem;
         }
@@ -406,6 +395,13 @@
             color: var(--primary-color);
             font-weight: 600;
         }
+        .logged-in{
+                    margin-left:10px;
+                    gap:10px;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                }
 
         /* --- RESPONSIVE CSS --- */
         @media (max-width: 768px) {
