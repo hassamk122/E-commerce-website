@@ -14,4 +14,9 @@ public class ProductController {
         model.addAttribute("email", currentUserDetails.getEmail());
         return "product-dashboard";
     }
+
+    @GetMapping("/products")
+    public String showProducts(){
+        return "all-products";
+    }
 }

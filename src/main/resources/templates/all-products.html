@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
 >
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitMart</title>
+    <title>Fitness Depot | Premium Gym Equipment</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link th:href="@{/css/index-style.css}" rel="stylesheet">
+    <link th:href="@{/css/all-products-style.css}" rel="stylesheet">
 </head>
+
 <body>
 
 <header>
@@ -36,7 +40,7 @@
             <div th:if="${#authorization.expression('isAnonymous()')}">
                 <a th:href="@{/login}" class="login-btn"><i class="far fa-user"></i></a>
             </div>
-                <!-- If logged in -->
+            <!-- If logged in -->
             <div th:if="${#authorization.expression('isAuthenticated()')}" class="logged-in">
                 <i class="far fa-user"></i>
                 <div class="user-info">
@@ -50,79 +54,15 @@
                 </a>
             </div>
 
-            </div>
+        </div>
     </div>
 </header>
-
-<!-- Hero Section -->
-<section class="hero">
-    <h1>Build Your Dream Gym</h1>
-    <p>Premium quality commercial and home gym equipment delivered to your doorstep across Pakistan.</p>
-    <a href="#" class="btn">Shop Now</a>
-</section>
-
-<!-- Features -->
-<section class="features">
-    <div class="feature-item">
-        <i class="fas fa-truck"></i>
-        <h3>Nationwide Delivery</h3>
-        <p>We ship to all major cities</p>
-    </div>
-    <div class="feature-item">
-        <i class="fas fa-tools"></i>
-        <h3>Installation Services</h3>
-        <p>Professional setup available</p>
-    </div>
-    <div class="feature-item">
-        <i class="fas fa-medal"></i>
-        <h3>Best Warranty</h3>
-        <p>Genuine products guarantee</p>
-    </div>
-    <div class="feature-item">
-        <i class="fas fa-headset"></i>
-        <h3>24/7 Support</h3>
-        <p>Expert fitness advice</p>
-    </div>
-</section>
-
-<!-- Categories -->
-<h2 class="section-title">Shop By Category</h2>
-<section class="categories">
-    <div class="category-grid">
-        <div class="cat-card">
-            <img src="https://images.unsplash.com/photo-1576678927484-cc907957088c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Cardio">
-            <div class="cat-overlay">
-                <h3>Cardio Machines</h3>
-            </div>
-        </div>
-        <div class="cat-card">
-            <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Strength">
-            <div class="cat-overlay">
-                <h3>Strength Training</h3>
-            </div>
-        </div>
-        <div class="cat-card">
-            <img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Dumbbells">
-            <div class="cat-overlay">
-                <h3>Free Weights</h3>
-            </div>
-        </div>
-        <div class="cat-card">
-            <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Accessories">
-            <div class="cat-overlay">
-                <h3>Gym Accessories</h3>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Featured Products -->
-<h2 class="section-title">Featured Products</h2>
+<h2 class="section-title">Our Products</h2>
 <section class="product-section">
     <div class="products-grid">
 
         <!-- Product 1 -->
-        <div class="product-card">
+        <a class="product-card" href="./product-template.html">
             <div class="product-img-container">
                 <img src="https://dynamofitness.com.au/cdn/shop/products/5-25-close-up_1080x.jpg?v=1721729119" alt="Dumbbell Set" onerror="this.src='https://via.placeholder.com/300?text=Dumbbells'">
             </div>
@@ -133,7 +73,7 @@
                     <span class="price">Rs. 40,500</span>
                 </div>
             </div>
-        </div>
+        </a>
 
         <!-- Product 2 -->
         <div class="product-card">
@@ -233,11 +173,63 @@
             </div>
         </div>
 
-    </div>
+        <!-- Product 9 -->
+        <div class="product-card">
+            <div class="product-img-container">
+                <img src="https://www.equippedgym.co.uk/cdn/shop/files/700lbsolympicbar1000x1000px.png?v=1704050257" alt="Barbell" onerror="this.src='https://via.placeholder.com/300?text=Barbell'">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Weights</span>
+                <h3 class="product-title">Olympic Barbell (20kg)</h3>
+                <div class="price-row">
+                    <span class="price">Rs. 28,000</span>
+                </div>
+            </div>
+        </div>
 
-    <!-- View More Button -->
-    <div class="view-more-container">
-        <a th:href="@{/products}" class="view-more-btn">View All Products</a>
+        <!-- Product 10 -->
+        <div class="product-card">
+            <div class="product-img-container">
+                <img src="https://images.offerup.com/8hRg2F0ioover8ldeOWEtt4G0kI=/1030x1050/3fd6/3fd607a646ed4dda8136ec938a1556eb.jpg" alt="Rowing Machine" onerror="this.src='https://via.placeholder.com/300?text=Rowing+Machine'">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Cardio</span>
+                <h3 class="product-title">Magnetic Resistance Rowing Machine</h3>
+                <div class="price-row">
+                    <span class="price">Rs. 72,000</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 11 -->
+        <div class="product-card">
+            <div class="product-img-container">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvdV29hKB_lNvOX8wXk3kFzTdkzu4OKEU55w&s" alt="Pull-up Bar" onerror="this.src='https://via.placeholder.com/300?text=Pullup+Bar'">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Strength</span>
+                <h3 class="product-title">Wall-Mounted Pull-Up Bar</h3>
+                <div class="price-row">
+                    <span class="price">Rs. 9,800</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 12 -->
+        <div class="product-card">
+            <div class="product-img-container">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt4KAU3_w_fQDPCm0ByzTuyqSIwS7ukK7IbQ&s" alt="Gloves" onerror="this.src='https://via.placeholder.com/300?text=Gloves'">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Accessories</span>
+                <h3 class="product-title">Breathable Workout Gloves</h3>
+                <div class="price-row">
+                    <span class="price">Rs. 1,800</span>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </section>
 
@@ -246,7 +238,8 @@
     <div class="footer-grid">
         <div class="footer-col">
             <h4>About Fitness Depot</h4>
-            <p>Pakistan's #1 choice for premium gym equipment. We provide high-quality gear for commercial gyms and home setups.</p>
+            <p>Pakistan's #1 choice for premium gym equipment. We provide high-quality gear for commercial gyms and
+                home setups.</p>
             <div class="social-links" style="margin-top: 20px;">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
@@ -256,7 +249,7 @@
         <div class="footer-col">
             <h4>Quick Links</h4>
             <ul>
-                <li><a th:href="@{/aboutus}">About Us</a></li>
+                <li><a href="./about-us.html">About Us</a></li>
                 <li><a href="./contact-us.html">Contact Us</a></li>
             </ul>
         </div>
@@ -284,4 +277,5 @@
 </footer>
 
 </body>
+
 </html>
