@@ -34,7 +34,12 @@ public class RegisterController {
                 return "signup";
             }
             System.out.println(userDto);
-            userService.registerUser(userDto);
+            try{
+                userService.registerUser(userDto);
+            }
+            catch (Exception e){
+                System.out.println("Error registering user!");
+            }
             return "redirect:/login?registered";
         }
 }
