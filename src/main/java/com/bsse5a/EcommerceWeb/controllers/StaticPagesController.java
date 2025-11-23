@@ -10,4 +10,9 @@ public class StaticPagesController {
     public String showAboutUs(){
         return "about-us";
     }
+    @GetMapping("/contactus")
+    public String showContactUs(){
+        return "contact-us";
+    }
+
 }

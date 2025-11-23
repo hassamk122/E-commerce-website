@@ -27,7 +27,7 @@ public class SecurityConfiguration {
         httpSecurity
                 .userDetailsService(currentUserDetailsService)
                 .authorizeHttpRequests(auth->auth
-                        .requestMatchers("/", "/register","/products", "/login","/home","/aboutus", "/css/**","/images/**").permitAll()
+                        .requestMatchers("/", "/register","/products","/contactus", "/login","/home","/aboutus", "/css/**","/images/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/home/**").hasAnyRole("USER","ADMIN")
                         .anyRequest().authenticated()
