@@ -14,5 +14,21 @@ public class StaticPagesController {
     public String showContactUs(){
         return "contact-us";
     }
+    @GetMapping("/terms-of-services")
+    public String showTermsAndConditions(){
+        return "terms-and-services";
+    }
+    @GetMapping("/warranty-policy")
+    public String showWarrantyPolicy(){
+        return "warranty-policy";
+    }
+    @GetMapping("/shipping-info")
+    public String showShippingInfo(){
+        return "shipping-info";
+    }
+    @GetMapping("/return-and-refund")
+    public String showReturnAndRefund(){
+        return "return-and-refund";
+    }
 
 }
