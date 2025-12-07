@@ -11,7 +11,7 @@ public class LoginController {
         if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
             return "redirect:/admin/dashboard";
         } else {
-            return "redirect:/home";
+            return "redirect:/";
         }
     }
 

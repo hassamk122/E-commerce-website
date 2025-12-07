@@ -425,3 +425,14 @@
 
             .hero h1 { font-size: 2.5rem; }
         }
+
+
+        .product-card.p1{
+            background-color : red;
+        }
+        .product-card.p2{
+                background-color : blue;
+                }
+                .product-card.p3{
+                        background-color : yellow;
+                        }
