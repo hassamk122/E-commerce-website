@@ -1,4 +1,4 @@
-package com.bsse5a.EcommerceWeb.Security;
+package com.bsse5a.EcommerceWeb.security;
 
 import com.bsse5a.EcommerceWeb.models.UserEntity;
 import org.springframework.security.core.GrantedAuthority;

@@ -1,4 +1,4 @@
-package com.bsse5a.EcommerceWeb.Security;
+package com.bsse5a.EcommerceWeb.security;
 
 import com.bsse5a.EcommerceWeb.services.CurrentUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;

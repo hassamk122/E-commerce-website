@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class DataInitializer {
 
     @Bean
-    CommandLineRunner initializeAdmin(UserRepository userRepository, PasswordEncoder passwordEncoder){
+    public CommandLineRunner initializeAdmin(UserRepository userRepository, PasswordEncoder passwordEncoder){
         return args -> {
             if(userRepository.findByEmail("hassam@admin.com").isEmpty()){
                 UserEntity admin = new UserEntity();

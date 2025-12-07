@@ -1,7 +1,7 @@
 package com.bsse5a.EcommerceWeb.controllers;
 
 
-import com.bsse5a.EcommerceWeb.Security.CurrentUserDetails;
+import com.bsse5a.EcommerceWeb.security.CurrentUserDetails;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,8 +12,10 @@ public class AdminController {
 
     @GetMapping("/admin/dashboard")
     public String getAdminDashboard(@AuthenticationPrincipal CurrentUserDetails currentUserDetails, Model model){
-        model.addAttribute("name", currentUserDetails.getName());
-        model.addAttribute("email", currentUserDetails.getEmail());
+        if (currentUserDetails != null) {
+                model.addAttribute("username", currentUserDetails.getName());
+                model.addAttribute("email", currentUserDetails.getEmail());
+        }
         return "admin-dashboard";
     }
 }

@@ -1,6 +1,6 @@
 package com.bsse5a.EcommerceWeb.services;
 
-import com.bsse5a.EcommerceWeb.Security.CurrentUserDetails;
+import com.bsse5a.EcommerceWeb.security.CurrentUserDetails;
 import com.bsse5a.EcommerceWeb.models.UserEntity;
 import com.bsse5a.EcommerceWeb.respositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
