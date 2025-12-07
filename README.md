@@ -1,5 +1,3 @@
-
-![Java](https://education.oracle.com/file/general/p-80-java.png)
 ![Spring Boot](https://repository-images.githubusercontent.com/149085612/76e31b00-782c-11e9-8fdc-eec6e93d055b)
 
 # GYM E-COMMERCE APP
