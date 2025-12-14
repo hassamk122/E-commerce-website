@@ -21,4 +21,14 @@ public class ProductController {
     public String showProducts(){
         return "all-products";
     }
+
+
+    @GetMapping("/admin/dashboard/create-products")
+    public String createProducts(@AuthenticationPrincipal CurrentUserDetails currentUserDetails, Model model){
+        if(currentUserDetails != null){
+            model.addAttribute("name", currentUserDetails.getName());
+            model.addAttribute("email", currentUserDetails.getEmail());
+        }
+        return "create-product";
+    }
 }

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin-dashboard-layout}"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/create-product-style.css}" rel="stylesheet">
+</head>
+<body>
+<section layout:fragment="section">
+    <div class="main-content">
+        <div class="card product-form-card">
+            <h3 class="card-header">Product Details</h3>
+            <div class="card-body">
+                <form action="/products/save" method="POST" class="product-form">
+
+                    <div class="form-group">
+                        <label for="product-title">Product Title</label>
+                        <input type="text" id="product-title" name="title" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group price-group">
+                            <label for="product-price">Price ($)</label>
+                            <input type="number" step="0.01" id="product-price" name="price" required>
+                        </div>
+                        <div class="form-group quantity-group">
+                            <label for="product-quantity">Quantity (Units)</label>
+                            <input type="number" id="product-quantity" name="quantity" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-image-url">Image URL</label>
+                        <input type="url" id="product-image-url" name="imageUrl" placeholder="e.g., https://example.com/image.jpg">
+                        <small>Enter a direct link to the product image.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-description">Description</label>
+                        <textarea id="product-description" name="description" rows="4" required></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save Product</button>
+                        <button type="button" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
