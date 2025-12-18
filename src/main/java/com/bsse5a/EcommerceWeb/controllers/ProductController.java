@@ -56,13 +56,11 @@ public class ProductController {
             Model model,
             RedirectAttributes redirectAttributes){
 
-        // Add user details
         if(currentUserDetails != null){
             model.addAttribute("name", currentUserDetails.getName());
             model.addAttribute("email", currentUserDetails.getEmail());
         }
 
-        // DEBUG: Log the received data
         System.out.println("=== POST Request Received ===");
         System.out.println("Product DTO: " + productDto);
         System.out.println("Has Errors: " + bindingResult.hasErrors());
