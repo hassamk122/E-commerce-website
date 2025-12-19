@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 @Controller
 public class ProductController {
 
@@ -28,11 +30,13 @@ public class ProductController {
             model.addAttribute("name", currentUserDetails.getName());
             model.addAttribute("email", currentUserDetails.getEmail());
         }
+        List<ProductDto> products = productService.showAllProducts();
+        model.addAttribute("products", products);
         return "product-dashboard";
     }
 
     @GetMapping("/products")
-    public String showProducts(){
+    public String showProducts(Model model){
         return "all-products";
     }
 

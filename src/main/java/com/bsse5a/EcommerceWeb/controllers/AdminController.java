@@ -13,7 +13,7 @@ public class AdminController {
     @GetMapping("/admin/dashboard")
     public String getAdminDashboard(@AuthenticationPrincipal CurrentUserDetails currentUserDetails, Model model){
         if (currentUserDetails != null) {
-                model.addAttribute("username", currentUserDetails.getName());
+                model.addAttribute("name", currentUserDetails.getName());
                 model.addAttribute("email", currentUserDetails.getEmail());
         }
         return "admin-dashboard";

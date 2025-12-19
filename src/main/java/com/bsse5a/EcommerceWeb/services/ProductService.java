@@ -6,6 +6,9 @@ import com.bsse5a.EcommerceWeb.respositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ProductService {
 
@@ -24,4 +27,23 @@ public class ProductService {
                 .build();
         productRepository.save(product);
     }
+
+    public List<ProductDto> showAllProducts(){
+        List<Product> products = productRepository.findAll();
+        return products.stream()
+                .map(product -> {
+                    ProductDto dto = ProductDto.builder()
+                            .id(product.getId())
+                            .title(product.getTitle())
+                            .description(product.getDescription())
+                            .price(product.getPrice())
+                            .gymEquipmentCategories(product.getGymEquipmentCategories())
+                            .imageUrl(product.getImageUrl())
+                            .quantity(product.getQuantity())
+                            .build();
+                    return dto;
+                })
+                .collect(Collectors.toList());
+    }
+
 }
