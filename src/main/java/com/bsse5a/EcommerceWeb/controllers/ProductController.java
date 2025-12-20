@@ -1,6 +1,7 @@
 package com.bsse5a.EcommerceWeb.controllers;
 
 import com.bsse5a.EcommerceWeb.dtos.ProductDto;
+import com.bsse5a.EcommerceWeb.models.Product;
 import com.bsse5a.EcommerceWeb.models.enums.GymEquipmentCategories;
 import com.bsse5a.EcommerceWeb.security.CurrentUserDetails;
 import com.bsse5a.EcommerceWeb.services.ProductService;
@@ -13,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -25,11 +27,7 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/admin/dashboard/products")
-    public String getProductsDashboard(@AuthenticationPrincipal CurrentUserDetails currentUserDetails, Model model){
-        if(currentUserDetails != null){
-            model.addAttribute("name", currentUserDetails.getName());
-            model.addAttribute("email", currentUserDetails.getEmail());
-        }
+    public String getProductsDashboard(Model model){
         List<ProductDto> products = productService.showAllProducts();
         model.addAttribute("products", products);
         return "product-dashboard";
@@ -41,12 +39,7 @@ public class ProductController {
     }
 
     @GetMapping("/admin/dashboard/create-products")
-    public String showCreateProducts(@AuthenticationPrincipal CurrentUserDetails currentUserDetails,
-                                     Model model){
-        if(currentUserDetails != null){
-            model.addAttribute("name", currentUserDetails.getName());
-            model.addAttribute("email", currentUserDetails.getEmail());
-        }
+    public String showCreateProducts(Model model){
         model.addAttribute("product", new ProductDto());
         model.addAttribute("categories", GymEquipmentCategories.values());
         return "create-product";
@@ -54,16 +47,10 @@ public class ProductController {
 
     @PostMapping("/admin/dashboard/create-products")
     public String createProducts(
-            @AuthenticationPrincipal CurrentUserDetails currentUserDetails,
             @Valid @ModelAttribute("product") ProductDto productDto,
             BindingResult bindingResult,
             Model model,
             RedirectAttributes redirectAttributes){
-
-        if(currentUserDetails != null){
-            model.addAttribute("name", currentUserDetails.getName());
-            model.addAttribute("email", currentUserDetails.getEmail());
-        }
 
         System.out.println("=== POST Request Received ===");
         System.out.println("Product DTO: " + productDto);
@@ -96,4 +83,79 @@ public class ProductController {
             return "create-product";
         }
     }
+
+    @GetMapping("/admin/dashboard/products/delete/{id}")
+    public String showDeleteConfirmation(@PathVariable Long id,
+                                         Model model,
+                                         RedirectAttributes redirectAttributes
+                                         ){
+        try{
+            ProductDto productDto = productService.getProductById(id);
+            if(productDto == null){
+                redirectAttributes.addFlashAttribute("error","Product not found");
+                return "redirect:/admin/dashboard/products";
+            }
+            model.addAttribute("productName", productDto.getTitle());
+            model.addAttribute("productId", productDto.getId());
+            return "product-delete";
+        }catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Error loading product: " + e.getMessage());
+            return "redirect:/products";
+        }
+    }
+
+    @PostMapping("/admin/dashboard/products/delete/{id}")
+    public String deleteProduct(@PathVariable Long id){
+
+            productService.deleteProduct(id);
+     return "redirect:/admin/dashboard/products";
+    }
+
+    @GetMapping("/admin/dashboard/products/edit/{id}")
+    public String showEditProductForm(@PathVariable Long id,
+                                      Model model,
+                                      RedirectAttributes redirectAttributes) {
+        try {
+            ProductDto productDto = productService.getProductById(id);
+
+            if (productDto == null) {
+                redirectAttributes.addFlashAttribute("errorMessage", "Product not found!");
+                return "redirect:/admin/dashboard/products";
+            }
+
+            model.addAttribute("product", productDto);
+            model.addAttribute("categories", GymEquipmentCategories.values());
+
+            return "product-update";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Error: " + e.getMessage());
+            return "redirect:/admin/dashboard/products";
+        }
+    }
+
+    @PostMapping("/admin/dashboard/products/update/{id}")
+    public String updateProduct(@PathVariable Long id,
+                                @Valid @ModelAttribute("product") ProductDto productDto, // Use DTO here
+                                BindingResult bindingResult,
+                                Model model,
+                                RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("categories", GymEquipmentCategories.values());
+            return "product-update";
+        }
+
+        try {
+            productDto.setId(id); // Ensure the ID from URL is set in DTO
+            productService.updateProduct(productDto); // Pass DTO to service
+
+            redirectAttributes.addFlashAttribute("successMessage", "Product updated successfully!");
+            return "redirect:/admin/dashboard/products";
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", "Failed to update: " + e.getMessage());
+            model.addAttribute("categories", GymEquipmentCategories.values());
+            return "product-update";
+        }
+    }
+
 }
