@@ -1,7 +1,6 @@
 package com.bsse5a.EcommerceWeb.controllers;
 
 import com.bsse5a.EcommerceWeb.dtos.UserRegistrationDto;
-import com.bsse5a.EcommerceWeb.models.UserEntity;
 import com.bsse5a.EcommerceWeb.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
