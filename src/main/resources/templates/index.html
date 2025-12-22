@@ -21,7 +21,7 @@
 <section class="hero">
     <h1>Build Your Dream Gym</h1>
     <p>Premium quality commercial and home gym equipment delivered to your doorstep across Pakistan.</p>
-    <a href="#" class="btn">Shop Now</a>
+    <a th:href="@{/products}" class="btn">Shop Now</a>
 </section>
 
 <!-- Features -->
@@ -83,123 +83,24 @@
 <h2 class="section-title">Featured Products</h2>
 <section class="product-section">
     <div class="products-grid">
-
-        <!-- Product 1 -->
-        <div class="product-card">
+        <div class="product-card" th:each="product, iter : ${products}"
+             th:if="${iter.index < 6}">
             <div class="product-img-container">
-                <img src="https://dynamofitness.com.au/cdn/shop/products/5-25-close-up_1080x.jpg?v=1721729119" alt="Dumbbell Set" onerror="this.src='https://via.placeholder.com/300?text=Dumbbells'">
+                <img th:src="${product.imageUrl}"
+                     th:alt="${product.title}">
             </div>
             <div class="product-info">
-                <span class="product-category">Weights</span>
-                <h3 class="product-title">Hex Rubber Dumbbell Set (5kg - 25kg)</h3>
+                <span class="product-category" th:text="${product.gymEquipmentCategories}"></span>
+                <h3 class="product-title" th:text="${product.title}"></h3>
                 <div class="price-row">
-                    <span class="price">Rs. 40,500</span>
+                    <span class="price" th:text="'₨' + ${#numbers.formatDecimal(product.price, 1, 2)}"></span>
                 </div>
             </div>
         </div>
-
-        <!-- Product 2 -->
-        <div class="product-card">
-            <div class="product-img-container">
-                <img src="https://fitnessdepot.pk/wp-content/uploads/2025/05/T56a-copy.png" alt="Treadmill" onerror="this.src='https://via.placeholder.com/300?text=Treadmill'">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Cardio</span>
-                <h3 class="product-title">Pro-Runner Commercial Treadmill</h3>
-                <div class="price-row">
-                    <span class="price">Rs. 185,000</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="product-card">
-            <div class="product-img-container">
-                <img src="https://subhanfitness.com/wp-content/uploads/2020/12/home-gym-5-Station.jpg" alt="Multi Gym" onerror="this.src='https://via.placeholder.com/300?text=Home+Gym'">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Strength</span>
-                <h3 class="product-title">All-in-One Home Gym Station</h3>
-                <div class="price-row">
-                    <span class="price">Rs. 95,000</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 4 -->
-        <div class="product-card">
-            <div class="product-img-container">
-                <img src="https://static.thcdn.com/images/large/original//productimg/1600/1600/14704701-7185095995293880.jpg" alt="Yoga Mat" onerror="this.src='https://via.placeholder.com/300?text=Yoga+Mat'">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Accessories</span>
-                <h3 class="product-title">Premium Non-Slip Yoga Mat</h3>
-                <div class="price-row">
-                    <span class="price">Rs. 2,500</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 5 -->
-        <div class="product-card">
-            <div class="product-img-container">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNyb5-lxeVElAeTBTIRguOa1eLR7D961FgJA&s" alt="Kettlebell" onerror="this.src='https://via.placeholder.com/300?text=Kettlebell'">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Weights</span>
-                <h3 class="product-title">Cast Iron Kettlebell (16kg)</h3>
-                <div class="price-row">
-                    <span class="price">Rs. 8,500</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 6 -->
-        <div class="product-card">
-            <div class="product-img-container">
-                <img src="https://m.media-amazon.com/images/I/51pWWg8f9eL._AC_SL1024_.jpg" alt="Bench" onerror="this.src='https://via.placeholder.com/300?text=Weight+Bench'">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Strength</span>
-                <h3 class="product-title">Adjustable Weight Bench</h3>
-                <div class="price-row">
-                    <span class="price">Rs. 22,000</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 7 -->
-        <div class="product-card">
-            <div class="product-img-container">
-                <img src="https://www.skbizcorp.com/cdn/shop/products/GR7-1-1000x1000-_1_2048x.png?v=1664194385" alt="Spin Bike" onerror="this.src='https://via.placeholder.com/300?text=Spin+Bike'">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Cardio</span>
-                <h3 class="product-title">Indoor Cycling Spin Bike</h3>
-                <div class="price-row">
-                    <span class="price">Rs. 55,000</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 8 -->
-        <div class="product-card">
-            <div class="product-img-container">
-                <img src="https://images-cdn.ubuy.ae/633a9d678ca29802b95a7345-pull-up-assist-band-heavy-duty.jpg" alt="Resistance Bands" onerror="this.src='https://via.placeholder.com/300?text=Bands'">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Accessories</span>
-                <h3 class="product-title">Heavy Duty Resistance Bands Set</h3>
-                <div class="price-row">
-                    <span class="price">Rs. 3,200</span>
-                </div>
-            </div>
-        </div>
-
     </div>
 
     <!-- View More Button -->
-    <div class="view-more-container">
+    <div class="view-more-container"  th:if="${products != null and #lists.size(products) > 6}">>
         <a th:href="@{/products}" class="view-more-btn">View All Products</a>
     </div>
 </section>

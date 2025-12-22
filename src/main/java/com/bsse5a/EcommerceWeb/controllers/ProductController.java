@@ -33,6 +33,8 @@ public class ProductController {
 
     @GetMapping("/products")
     public String showProducts(Model model){
+        List<ProductDto> products = productService.showAllProducts();
+        model.addAttribute("products", products);
         return "all-products";
     }
 

@@ -22,177 +22,20 @@
 <main layout:fragment="main-section">
 <h2 class="section-title">Our Products</h2>
 <section class="product-section">
-    <div class="products-grid">
-
-        <!-- Product 1 -->
-        <a class="product-card" href="./product-template.html">
+    <div class="products-grid" >
+        <a class="product-card" href="./product-template.html" th:each="product : ${products}">
             <div class="product-img-container">
-                <img src="https://dynamofitness.com.au/cdn/shop/products/5-25-close-up_1080x.jpg?v=1721729119" alt="Dumbbell Set" onerror="this.src='https://via.placeholder.com/300?text=Dumbbells'">
+                <img th:src="${product.imageUrl}"
+                     th:alt="${product.title}">
             </div>
             <div class="product-info">
-                <span class="product-category">Weights</span>
-                <h3 class="product-title">Hex Rubber Dumbbell Set (5kg - 25kg)</h3>
+                <span class="product-category" th:text="${product.gymEquipmentCategories}"></span>
+                <h3 class="product-title" th:text="${product.title}"></h3>
                 <div class="price-row">
-                    <span class="price">Rs. 40,500</span>
+                    <span class="price" th:text="'₨' + ${#numbers.formatDecimal(product.price, 1, 2)}"></span>
                 </div>
             </div>
         </a>
-
-        <!-- Product 2 -->
-        <div class="product-card">
-            <div class="product-img-container">
-                <img src="https://fitnessdepot.pk/wp-content/uploads/2025/05/T56a-copy.png" alt="Treadmill" onerror="this.src='https://via.placeholder.com/300?text=Treadmill'">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Cardio</span>
-                <h3 class="product-title">Pro-Runner Commercial Treadmill</h3>
-                <div class="price-row">
-                    <span class="price">Rs. 185,000</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="product-card">
-            <div class="product-img-container">
-                <img src="https://subhanfitness.com/wp-content/uploads/2020/12/home-gym-5-Station.jpg" alt="Multi Gym" onerror="this.src='https://via.placeholder.com/300?text=Home+Gym'">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Strength</span>
-                <h3 class="product-title">All-in-One Home Gym Station</h3>
-                <div class="price-row">
-                    <span class="price">Rs. 95,000</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 4 -->
-        <div class="product-card">
-            <div class="product-img-container">
-                <img src="https://static.thcdn.com/images/large/original//productimg/1600/1600/14704701-7185095995293880.jpg" alt="Yoga Mat" onerror="this.src='https://via.placeholder.com/300?text=Yoga+Mat'">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Accessories</span>
-                <h3 class="product-title">Premium Non-Slip Yoga Mat</h3>
-                <div class="price-row">
-                    <span class="price">Rs. 2,500</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 5 -->
-        <div class="product-card">
-            <div class="product-img-container">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNyb5-lxeVElAeTBTIRguOa1eLR7D961FgJA&s" alt="Kettlebell" onerror="this.src='https://via.placeholder.com/300?text=Kettlebell'">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Weights</span>
-                <h3 class="product-title">Cast Iron Kettlebell (16kg)</h3>
-                <div class="price-row">
-                    <span class="price">Rs. 8,500</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 6 -->
-        <div class="product-card">
-            <div class="product-img-container">
-                <img src="https://m.media-amazon.com/images/I/51pWWg8f9eL._AC_SL1024_.jpg" alt="Bench" onerror="this.src='https://via.placeholder.com/300?text=Weight+Bench'">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Strength</span>
-                <h3 class="product-title">Adjustable Weight Bench</h3>
-                <div class="price-row">
-                    <span class="price">Rs. 22,000</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 7 -->
-        <div class="product-card">
-            <div class="product-img-container">
-                <img src="https://www.skbizcorp.com/cdn/shop/products/GR7-1-1000x1000-_1_2048x.png?v=1664194385" alt="Spin Bike" onerror="this.src='https://via.placeholder.com/300?text=Spin+Bike'">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Cardio</span>
-                <h3 class="product-title">Indoor Cycling Spin Bike</h3>
-                <div class="price-row">
-                    <span class="price">Rs. 55,000</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 8 -->
-        <div class="product-card">
-            <div class="product-img-container">
-                <img src="https://images-cdn.ubuy.ae/633a9d678ca29802b95a7345-pull-up-assist-band-heavy-duty.jpg" alt="Resistance Bands" onerror="this.src='https://via.placeholder.com/300?text=Bands'">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Accessories</span>
-                <h3 class="product-title">Heavy Duty Resistance Bands Set</h3>
-                <div class="price-row">
-                    <span class="price">Rs. 3,200</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 9 -->
-        <div class="product-card">
-            <div class="product-img-container">
-                <img src="https://www.equippedgym.co.uk/cdn/shop/files/700lbsolympicbar1000x1000px.png?v=1704050257" alt="Barbell" onerror="this.src='https://via.placeholder.com/300?text=Barbell'">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Weights</span>
-                <h3 class="product-title">Olympic Barbell (20kg)</h3>
-                <div class="price-row">
-                    <span class="price">Rs. 28,000</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 10 -->
-        <div class="product-card">
-            <div class="product-img-container">
-                <img src="https://images.offerup.com/8hRg2F0ioover8ldeOWEtt4G0kI=/1030x1050/3fd6/3fd607a646ed4dda8136ec938a1556eb.jpg" alt="Rowing Machine" onerror="this.src='https://via.placeholder.com/300?text=Rowing+Machine'">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Cardio</span>
-                <h3 class="product-title">Magnetic Resistance Rowing Machine</h3>
-                <div class="price-row">
-                    <span class="price">Rs. 72,000</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 11 -->
-        <div class="product-card">
-            <div class="product-img-container">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvdV29hKB_lNvOX8wXk3kFzTdkzu4OKEU55w&s" alt="Pull-up Bar" onerror="this.src='https://via.placeholder.com/300?text=Pullup+Bar'">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Strength</span>
-                <h3 class="product-title">Wall-Mounted Pull-Up Bar</h3>
-                <div class="price-row">
-                    <span class="price">Rs. 9,800</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 12 -->
-        <div class="product-card">
-            <div class="product-img-container">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt4KAU3_w_fQDPCm0ByzTuyqSIwS7ukK7IbQ&s" alt="Gloves" onerror="this.src='https://via.placeholder.com/300?text=Gloves'">
-            </div>
-            <div class="product-info">
-                <span class="product-category">Accessories</span>
-                <h3 class="product-title">Breathable Workout Gloves</h3>
-                <div class="price-row">
-                    <span class="price">Rs. 1,800</span>
-                </div>
-            </div>
-        </div>
-
-
     </div>
 </section>
 
