@@ -28,7 +28,7 @@ public class SecurityConfiguration {
                 .userDetailsService(currentUserDetailsService)
                 .authorizeHttpRequests(auth->auth
                         .requestMatchers("/", "/register",
-                                "/products","/contactus", "/warranty-policy",
+                                "/products/**","/contactus", "/warranty-policy",
                                 "/terms-and-services","/shipping-info","/return-and-refund",
                                 "/login","/home","/aboutus", "/css/**","/images/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")

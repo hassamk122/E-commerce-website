@@ -325,6 +325,74 @@
             padding-bottom: 120px;
         }
 
+/* Container for the Empty State */
+.no-results-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    margin: 40px 0;
+    text-align: center;
+}
+
+/* Content Wrapper */
+.no-results-content {
+    max-width: 450px;
+}
+
+/* Icon Styling */
+.no-results-content i {
+    font-size: 4rem;
+    color: #cbd5e6; /* Subtle gray */
+    margin-bottom: 20px;
+    display: block;
+}
+
+/* Heading Styling */
+.no-results-content h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    color: #1d3557; /* Dark navy */
+    margin-bottom: 12px;
+}
+
+/* Paragraph Styling */
+.no-results-content p {
+    font-family: 'Inter', sans-serif;
+    color: #718096;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Action Button */
+.reset-search-btn {
+    display: inline-block;
+    background-color: #e63946; /* Fitness Depot Red */
+    color: #ffffff;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.reset-search-btn:hover {
+    background-color: #1d3557;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(29, 53, 87, 0.2);
+    color: #ffffff;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+    .no-results-content h3 {
+        font-size: 1.5rem;
+    }
+    .no-results-container {
+        padding: 40px 15px;
+    }
+}
         .product-card {
             background: white;
             border: 1px solid #e2e8f0;

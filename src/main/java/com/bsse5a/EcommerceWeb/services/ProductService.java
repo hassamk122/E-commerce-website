@@ -3,6 +3,7 @@ package com.bsse5a.EcommerceWeb.services;
 import com.bsse5a.EcommerceWeb.dtos.ProductDto;
 import com.bsse5a.EcommerceWeb.mappers.ProductMapper;
 import com.bsse5a.EcommerceWeb.models.Product;
+import com.bsse5a.EcommerceWeb.models.enums.GymEquipmentCategories;
 import com.bsse5a.EcommerceWeb.respositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -80,5 +81,24 @@ public class ProductService {
         existingProduct.setUpdatedAt(LocalDate.now());
 
         return productRepository.save(existingProduct);
+    }
+
+    public List<ProductDto> getProductsByCategory(GymEquipmentCategories category) {
+        return productRepository.findByGymEquipmentCategories(category)
+                .stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
+    }
+
+    private ProductDto toDto(Product product) {
+        return ProductDto.builder()
+                .id(product.getId())
+                .title(product.getTitle())
+                .description(product.getDescription())
+                .price(product.getPrice())
+                .quantity(product.getQuantity())
+                .imageUrl(product.getImageUrl())
+                .gymEquipmentCategories(product.getGymEquipmentCategories())
+                .build();
     }
 }

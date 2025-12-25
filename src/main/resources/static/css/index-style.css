@@ -8,6 +8,14 @@
             --text-light: #94a3b8;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
+        .cat-card {
+            display: block;          /* Ensures the link fills the card area */
+            text-decoration: none;   /* Removes default link underlining */
+            color: inherit;          /* Keeps your text colors the same */
+            overflow: hidden;
+            position: relative;
+            border-radius: 12px;
+        }
 
         h1, h2 {
               font-family: 'Poppins', sans-serif;
