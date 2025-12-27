@@ -30,6 +30,13 @@ public class ProductService {
         productRepository.save(product);
     }
 
+    public List<ProductDto> searchProducts(String query) {
+        return productRepository.searchProducts(query)
+                .stream()
+                .map(productMapper::toDto)
+                .toList();
+    }
+
     public Long allProductsCount(){
         return productRepository.count();
     }

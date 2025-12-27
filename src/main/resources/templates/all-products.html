@@ -20,7 +20,7 @@
 
 <body>
 <main layout:fragment="main-section">
-<h2 th:text="${selectedCategory}" class="section-title">Our Products</h2>
+<h2 th:text="${selectedCategory}" class="section-title">Our Products<span th:text="{query}"></span></h2>
     <div th:if="${#lists.isEmpty(products)}" class="no-results-container">
         <div class="no-results-content">
             <i class="fas fa-dumbbell"></i>

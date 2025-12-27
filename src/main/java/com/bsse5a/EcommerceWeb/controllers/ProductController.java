@@ -45,6 +45,20 @@ public class ProductController {
         return "all-products";
     }
 
+    @GetMapping("/products/search")
+    public String searchProducts(
+            @RequestParam("query") String query,
+            Model model
+    ) {
+        model.addAttribute("products", productService.searchProducts(query));
+        model.addAttribute("selectedCategory", "Search results for \"" + query + "\"");
+        model.addAttribute("query", query);
+
+        return "all-products";
+    }
+
+
+
 
     @GetMapping("/products/{id}")
     public String getProductDetail(@PathVariable("id") Long id, Model model) {

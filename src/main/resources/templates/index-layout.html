@@ -21,11 +21,20 @@
             <img th:src="@{/images/fitmart-logo.svg}" >
         </a>
 
-        <!-- Search -->
-        <div class="search-box">
-            <input type="text" placeholder="Search for equipment (e.g., Dumbbells, Treadmill)...">
-            <button><i class="fas fa-search"></i></button>
-        </div>
+        <!-- Search --><div>
+        <form class="search-box" th:action="@{/products/search}" method="get">
+            <input
+                    type="text"
+                    name="query"
+                    placeholder="Search for equipment (e.g., Dumbbells, Treadmill)..."
+                    th:value="${query}"
+            />
+            <button type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+    </div>
+
 
         <!-- Icons -->
         <div class="nav-icons">
