@@ -1,14 +1,10 @@
 package com.bsse5a.EcommerceWeb.services;
 
-
 import com.bsse5a.EcommerceWeb.dtos.UserRegistrationDto;
 import com.bsse5a.EcommerceWeb.mappers.UserMapper;
 import com.bsse5a.EcommerceWeb.models.UserEntity;
-import com.bsse5a.EcommerceWeb.models.enums.Role;
 import com.bsse5a.EcommerceWeb.respositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.security.crypto.password.PasswordEncoder;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,6 +18,7 @@ public class UserService {
         this.userMapper = userMapper;
     }
 
+    @Transactional
     public void  registerUser(UserRegistrationDto userDto){
         UserEntity newUserEntity = userMapper.toEntity(userDto);
         userRepository.save(newUserEntity);
