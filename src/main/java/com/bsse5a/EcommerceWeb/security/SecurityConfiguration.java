@@ -30,7 +30,9 @@ public class SecurityConfiguration {
                         .requestMatchers("/", "/register",
                                 "/products/**","/contactus", "/warranty-policy",
                                 "/terms-and-services","/shipping-info","/return-and-refund",
-                                "/login","/home","/aboutus", "/css/**","/images/**").permitAll()
+                                "/login","/home","/aboutus", "/css/**","/images/**",
+                                "/chat-socket/**"
+                        ).permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/home/**").hasAnyRole("USER","ADMIN")
                         .anyRequest().authenticated()
