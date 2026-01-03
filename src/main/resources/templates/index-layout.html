@@ -39,8 +39,13 @@
         <!-- Icons -->
         <div class="nav-icons">
 
-            <a href="#">
+
+            <a th:href="@{/cart}" class="cart-link">
                 <i class="fas fa-shopping-cart"></i>
+                <!-- Cart count badge - only shows if count > 0 -->
+                <span th:if="${cartItemCount > 0}"
+                      class="cart-badge"
+                      th:text="${cartItemCount}">0</span>
             </a>
             <!-- User Info Block -->
             <div th:if="${#authorization.expression('isAnonymous()')}">

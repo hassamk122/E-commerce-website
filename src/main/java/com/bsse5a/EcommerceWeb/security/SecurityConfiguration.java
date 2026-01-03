@@ -33,8 +33,8 @@ public class SecurityConfiguration {
                                 "/login","/home","/aboutus", "/css/**","/images/**",
                                 "/chat-socket/**"
                         ).permitAll()
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                                .requestMatchers("/home/**").hasAnyRole("USER","ADMIN")
+                        .requestMatchers("/admin/**","/cart/**").hasRole("ADMIN")
+                                .requestMatchers("/home/**","/cart/**").hasAnyRole("USER","ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form->form

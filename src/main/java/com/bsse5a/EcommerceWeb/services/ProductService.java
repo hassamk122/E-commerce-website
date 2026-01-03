@@ -8,6 +8,7 @@ import com.bsse5a.EcommerceWeb.respositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -18,14 +19,14 @@ public class ProductService {
     private ProductRepository productRepository;
     private ProductMapper productMapper;
 
-    public ProductService(ProductRepository productRepository, ProductMapper productMapper){
+    public ProductService(ProductRepository productRepository, ProductMapper productMapper) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
     }
 
 
-    public void createProduct(ProductDto productDto){
-        if(productDto == null) return;
+    public void createProduct(ProductDto productDto) {
+        if (productDto == null) return;
         Product product = productMapper.toEntity(productDto);
         productRepository.save(product);
     }
@@ -37,11 +38,12 @@ public class ProductService {
                 .toList();
     }
 
-    public Long allProductsCount(){
+
+    public Long allProductsCount() {
         return productRepository.count();
     }
 
-    public List<ProductDto> showAllProducts(){
+    public List<ProductDto> showAllProducts() {
         List<Product> products = productRepository.findAll();
         return products.stream()
                 .map(product -> {
@@ -51,16 +53,16 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
-    public ProductDto getProductById(Long id){
+    public ProductDto getProductById(Long id) {
         Optional<Product> product = productRepository.findById(id);
-        if(product.isEmpty()) return null;
+        if (product.isEmpty()) return null;
         return productMapper.toDto(product.orElse(null));
     }
 
 
-    public void deleteProduct(Long id){
-        if(!productRepository.existsById(id)){
-            System.out.println("Product not found by id"+id);
+    public void deleteProduct(Long id) {
+        if (!productRepository.existsById(id)) {
+            System.out.println("Product not found by id" + id);
         }
         productRepository.deleteById(id);
     }
@@ -107,5 +109,41 @@ public class ProductService {
                 .imageUrl(product.getImageUrl())
                 .gymEquipmentCategories(product.getGymEquipmentCategories())
                 .build();
+    }
+
+    public List<ProductDto> sortProducts(List<ProductDto> products, String sort) {
+        if (products == null || products.isEmpty()) {
+            return products;
+        }
+
+        switch (sort.toLowerCase()) {
+            case "price_asc":
+                // Price: Low to High
+                return products.stream()
+                        .sorted(Comparator.comparing(ProductDto::getPrice))
+                        .collect(Collectors.toList());
+
+            case "price_desc":
+                // Price: High to Low
+                return products.stream()
+                        .sorted(Comparator.comparing(ProductDto::getPrice).reversed())
+                        .collect(Collectors.toList());
+
+            case "name_asc":
+                // Name: A to Z (optional)
+                return products.stream()
+                        .sorted(Comparator.comparing(ProductDto::getTitle, String.CASE_INSENSITIVE_ORDER))
+                        .collect(Collectors.toList());
+
+            case "name_desc":
+                // Name: Z to A (optional)
+                return products.stream()
+                        .sorted(Comparator.comparing(ProductDto::getTitle, String.CASE_INSENSITIVE_ORDER).reversed())
+                        .collect(Collectors.toList());
+
+            default:
+                // No sorting (keep default order from database)
+                return products;
+        }
     }
 }

@@ -31,19 +31,29 @@ public class ProductController {
     @GetMapping("/products")
     public String products(
             @RequestParam(value = "category", required = false) GymEquipmentCategories category,
+            @RequestParam(required = false) String sort,
             Model model
     ) {
+        List<ProductDto> products;
+
         if (category == null) {
-            List<ProductDto> products = productService.showAllProducts();
-            model.addAttribute("products", products);
+            products = productService.showAllProducts();
             model.addAttribute("selectedCategory", "Our Products");
         } else {
-            model.addAttribute("products", productService.getProductsByCategory(category));
+            products = productService.getProductsByCategory(category);
             model.addAttribute("selectedCategory", category);
         }
 
+        if (sort != null && !sort.isEmpty()) {
+            products = productService.sortProducts(products, sort);
+        }
+
+        model.addAttribute("products", products);
+        model.addAttribute("sort", sort);
+
         return "all-products";
     }
+
 
     @GetMapping("/products/search")
     public String searchProducts(

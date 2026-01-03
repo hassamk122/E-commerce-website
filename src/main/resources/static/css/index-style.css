@@ -204,6 +204,47 @@
             transition: background 0.3s;
         }
 
+        .cart-link {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: inherit;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .cart-link:hover {
+            color: #e63946;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #e63946;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Alternative: If you want larger badge for 2-digit numbers */
+        .cart-badge {
+            min-width: 20px;
+            height: 20px;
+            padding: 0 5px;
+            border-radius: 10px;
+        }
+
         #send-btn:hover {
             background: #d32f2f;
         }
