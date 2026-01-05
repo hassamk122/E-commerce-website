@@ -34,7 +34,7 @@ public class SecurityConfiguration {
                                 "/chat-socket/**"
                         ).permitAll()
                         .requestMatchers("/admin/**","/cart/**").hasRole("ADMIN")
-                                .requestMatchers("/home/**","/cart/**").hasAnyRole("USER","ADMIN")
+                                .requestMatchers("/home/**","/cart/**","/orders/**").hasAnyRole("USER","ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form->form

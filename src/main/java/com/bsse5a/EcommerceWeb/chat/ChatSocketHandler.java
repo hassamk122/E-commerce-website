@@ -9,6 +9,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 @Component
 public class ChatSocketHandler extends TextWebSocketHandler {
 
+
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         System.out.println("WebSocket Connected: " + session.getId());
