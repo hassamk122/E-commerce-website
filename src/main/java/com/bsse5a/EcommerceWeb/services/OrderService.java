@@ -6,10 +6,12 @@ import com.bsse5a.EcommerceWeb.models.Order;
 import com.bsse5a.EcommerceWeb.models.OrderItem;
 import com.bsse5a.EcommerceWeb.respositories.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -126,5 +128,40 @@ public class OrderService {
 
         public String getNotes() { return notes; }
         public void setNotes(String notes) { this.notes = notes; }
+    }
+
+
+    public List<Order> getAllOrders() {
+        return orderRepository.findAll();
+    }
+
+
+
+    @Transactional
+    public Order saveOrder(Order order) {
+        return orderRepository.save(order);
+    }
+
+    @Transactional
+    public void updateOrderStatus(Long id, Order.OrderStatus status, String notes) {
+        Order order = getOrderById(id);
+        order.setStatus(status);
+        if (notes != null && !notes.isEmpty()) {
+            order.setNotes(notes);
+        }
+        orderRepository.save(order);
+    }
+
+    @Transactional
+    public void deleteOrder(Long id) {
+        orderRepository.deleteById(id);
+    }
+
+    public List<Order> getOrdersByStatus(Order.OrderStatus status) {
+        return orderRepository.findByStatus(status);
+    }
+
+    public List<Order> getOrdersByCustomerEmail(String email) {
+        return orderRepository.findByCustomerEmail(email);
     }
 }

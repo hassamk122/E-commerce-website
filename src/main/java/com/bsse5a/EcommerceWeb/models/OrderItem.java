@@ -45,4 +45,8 @@ public class OrderItem {
     public void calculateSubtotal() {
         this.subtotal = this.productPrice * this.quantity;
     }
+
+    public Double getItemTotal() {
+        return productPrice * quantity;
+    }
 }
