@@ -39,10 +39,8 @@
     margin-top: 20px;
     display: flex;
     align-items: center;
-    justify-content: center;
-
+    justify-content: center; /* Changed from center to flex-start */
 }
-
 .section-overview {
     display: flex;
     flex-wrap: wrap;
@@ -53,8 +51,8 @@
     align-items: center;
     justify-content: space-between;
     margin: 10px;
-    width: 250px;
-    height: 150px;
+    width: 350px;
+    height: 220px;
     border-radius: 10px;
     padding: 15px;
     color: white;
@@ -67,13 +65,13 @@
 .overview-item h2 {
     font-family: "Poppins", sans-serif;
     font-weight: 300;
-    font-size: 1.25rem;
+    font-size: 1.75rem;
 }
 
 .overview-item h1 {
     font-family: "Inter", sans-serif;
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 1.85rem;
 }
 
 .overview-item.products {
@@ -166,4 +164,38 @@ td {
     display: flex;
     gap: 5px;
     max-width: 400px;
+}
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    font-family: "Inter", sans-serif;
+    text-transform: uppercase;
+}
+
+.status-badge.PENDING {
+    background-color: #FEF3C7;
+    color: #92400E;
+}
+
+.status-badge.PROCESSING {
+    background-color: #DBEAFE;
+    color: #1E40AF;
+}
+
+.status-badge.SHIPPED {
+    background-color: #E0E7FF;
+    color: #4338CA;
+}
+
+.status-badge.DELIVERED {
+    background-color: #D1FAE5;
+    color: #065F46;
+}
+
+.status-badge.CANCELLED {
+    background-color: #FEE2E2;
+    color: #991B1B;
 }

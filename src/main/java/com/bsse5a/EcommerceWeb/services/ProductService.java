@@ -146,4 +146,13 @@ public class ProductService {
                 return products;
         }
     }
+
+
+    public List<ProductDto> getTopProducts(int limit) {
+        return productRepository.findAll()
+                .stream()
+                .limit(limit)
+                .map(productMapper::toDto) // Assuming you have a mapper
+                .collect(Collectors.toList());
+    }
 }

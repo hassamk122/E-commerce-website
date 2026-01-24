@@ -36,7 +36,7 @@
                 <div class="overview-item orders">
                     <div>
                         <h2>Orders</h2>
-                        <h1>20</h1>
+                        <h1 th:text="${ordersCount}">0</h1>
                     </div>
                     <div class="overview-svg">
                         <svg xmlns="http://www.w3.org/2000/svg" width="80px" height="80px" viewBox="0 0 24 24" fill="none"  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-arrow-down-icon lucide-clock-arrow-down"><path d="M12 6v6l2 1"/><path d="M12.337 21.994a10 10 0 1 1 9.588-8.767"/><path d="m14 18 4 4 4-4"/><path d="M18 14v8"/></svg>
@@ -45,27 +45,10 @@
                 <div class="overview-item users">
                     <div>
                         <h2>Users</h2>
-                        <h1>25</h1>
+                        <h1 th:text="${usersCount}">0</h1>
                     </div>
                     <div class="overview-svg">
                         <svg xmlns="http://www.w3.org/2000/svg"  width="80px" height="80px" viewBox="0 0 24 24" fill="none"  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-round-icon lucide-users-round"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></svg>
-                    </div>
-                </div>
-                <div class="overview-item revenue">
-                    <div>
-                        <h2>Revenue</h2>
-                        <h1>Rs1,00,000</h1>
-                    </div>
-                    <div class="overview-svg">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="80px" height="80px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dollar-sign-icon lucide-circle-dollar-sign"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg></div>
-                </div>
-                <div class="overview-item admins">
-                    <div>
-                        <h2>Admins</h2>
-                        <h1>3</h1>
-                    </div>
-                    <div class="overview-svg">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="80px" height="80px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-userEntity-icon lucide-shield-userEntity"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M6.376 18.91a6 6 0 0 1 11.249.003"/><circle cx="12" cy="11" r="4"/></svg>
                     </div>
                 </div>
             </div>
@@ -85,45 +68,22 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
+                            <tr th:each="product, iterStat : ${topProducts}">
+                                <td th:text="${iterStat.count}">1</td>
                                 <td>
                                     <div class="product-name-image">
-                                        <span class="product-image-span">
-                                        <img class="image-inspan" src="https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/opn/opn02866/g/100.jpg"></span>
-                                        <p>Optimum Nutrition, Gold Standard® 100% Whey Protein, Double Rich Chocolate, 5.05 lb (2.29 kg) </p>
+                                <span class="product-image-span">
+                                    <img class="image-inspan" th:src="${product.imageUrl}" th:alt="${product.title}">
+                                </span>
+                                        <p th:text="${product.title}">Product Title</p>
                                     </div>
                                 </td>
-                                <td>₨21,777.38</td>
-                                <td>12</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>
-                                    <div class="product-name-image">
-                                        <span class="product-image-span">
-                                        <img class="image-inspan" src="https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/msf/msf70386/g/58.jpg"></span>
-                                        <p>MusclePharm, Combat® Protein Powder, Chocolate Milk , 4.2 lbs (1.9 kg) </p>
-                                    </div>
-                                </td>
-                                <td>₨29,792.76</td>
-                                <td>15</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>
-                                    <div class="product-name-image">
-                                        <span class="product-image-span">
-                                        <img class="image-inspan" src="https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/pnb/pnb00028/g/51.jpg"></span>
-                                        <p>Peanut Butter & Co., Old Fashioned Crunchy, Peanut Butter, 16 oz (454 g)  </p>
-                                    </div>
-                                </td>
-                                <td>₨2,362.83</td>
-                                <td>60</td>
+                                <td th:text="'₨' + ${#numbers.formatDecimal(product.price, 1, 2)}">₨21,777.38</td>
+                                <td th:text="${product.quantity}">12</td>
                             </tr>
                             </tbody>
                         </table>
-                        <div>
+                        <div th:if="${#lists.size(topProducts) == 5}">
                             <a th:href="@{/admin/dashboard/products}" class="view-more">View more</a>
                         </div>
                     </div>
@@ -138,48 +98,26 @@
                                 <th>Customer</th>
                                 <th>Date Ordered</th>
                                 <th>Total</th>
-                                <th>Delivery Date</th>
+                                <th>Status</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Muhammad Hassam</td>
-                                <td>1/11/2025</td>
-                                <td>₨21,777.38</td>
-                                <td>7/11/2025</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Umer Fayyaz</td>
-                                <td>4/11/2025</td>
-                                <td>₨29,792.76</td>
-                                <td>11/11/2025</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Sufyan Khalid</td>
-                                <td>10/11/2025</td>
-                                <td>₨2,362.83</td>
-                                <td>17/11/2025</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Talha Jamal</td>
-                                <td>10/11/2025</td>
-                                <td>₨2,362.83</td>
-                                <td>17/11/2025</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Sheryar</td>
-                                <td>10/11/2025</td>
-                                <td>₨2,362.83</td>
-                                <td>17/11/2025</td>
+                            <tr th:each="order, iterStat : ${recentOrders}">
+                                <td th:text="${iterStat.count}">1</td>
+                                <td th:text="${order.customerName}">Muhammad Hassam</td>
+                                <td th:text="${#temporals.format(order.orderDate, 'dd/MM/yyyy')}">1/11/2025</td>
+                                <td th:text="'₨' + ${#numbers.formatDecimal(order.total, 1, 2)}">₨21,777.38</td>
+                                <td>
+                    <span class="status-badge"
+                          th:classappend="${order.status.name()}"
+                          th:text="${order.status}">
+                        PENDING
+                    </span>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
-                        <div>
+                        <div th:if="${#lists.size(recentOrders) == 5}">
                             <a th:href="@{/admin/dashboard/orders}" class="view-more">View more</a>
                         </div>
                     </div>

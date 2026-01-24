@@ -11,9 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -163,5 +165,17 @@ public class OrderService {
 
     public List<Order> getOrdersByCustomerEmail(String email) {
         return orderRepository.findByCustomerEmail(email);
+    }
+
+    public long getTotalOrdersCount() {
+        return orderRepository.count();
+    }
+
+    public List<Order> getRecentOrders(int limit) {
+        return orderRepository.findAll()
+                .stream()
+                .sorted(Comparator.comparing(Order::getOrderDate).reversed()) // Sort by most recent
+                .limit(limit)
+                .collect(Collectors.toList());
     }
 }
