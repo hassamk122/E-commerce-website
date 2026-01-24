@@ -1,5 +1,29 @@
-FROM eclipse-temurin:17-jdk-alpine
+# Stage 1: Build
+FROM eclipse-temurin:17-jdk-alpine AS build
 WORKDIR /app
-COPY target/*.jar app.jar
+
+# Copy Maven wrapper and pom.xml
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+
+# Download dependencies (this layer will be cached)
+RUN ./mvnw dependency:go-offline
+
+# Copy source code
+COPY src ./src
+
+# Build the application (skip tests for faster builds)
+RUN ./mvnw clean package -DskipTests
+
+# Stage 2: Run
+FROM eclipse-temurin:17-jre-alpine
+WORKDIR /app
+
+# Copy the built JAR from build stage
+COPY --from=build /app/target/*.jar app.jar
+
+# Expose port
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","app.jar"]
+
+# Run the application
+ENTRYPOINT ["java", "-jar", "app.jar"]
