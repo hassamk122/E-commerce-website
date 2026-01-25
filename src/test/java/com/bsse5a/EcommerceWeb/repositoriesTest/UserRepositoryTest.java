@@ -21,22 +21,22 @@ public class UserRepositoryTest {
     @Autowired
     private TestEntityManager entityManager;
 
-    @Test
-    void testFindByEmail_UserExists() {
-        UserEntity user = new UserEntity();
-        user.setName("John Doe");
-        user.setEmail("john@example.com");
-        user.setPassword("password123");
-        user.setRole(Role.USER);
-        entityManager.persistAndFlush(user);
-
-
-        Optional<UserEntity> found = userRepository.findByEmail("john@example.com");
-
-        assertTrue(found.isPresent());
-        assertEquals("John Doe", found.get().getName());
-        assertEquals("john@example.com", found.get().getEmail());
-    }
+        @Test
+        void testFindByEmail_UserExists() {
+            UserEntity user = new UserEntity();
+            user.setName("John Doe");
+            user.setEmail("john@example.com");
+            user.setPassword("password123");
+            user.setRole(Role.USER);
+            entityManager.persistAndFlush(user);
+    
+    
+            Optional<UserEntity> found = userRepository.findByEmail("john@example.com");
+    
+            assertTrue(found.isPresent());
+            assertEquals("John Doe", found.get().getName());
+            assertEquals("john@example.com", found.get().getEmail());
+        }
 
     @Test
     void testFindByEmail_UserDoesNotExist() {

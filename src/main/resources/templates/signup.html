@@ -40,7 +40,6 @@
                     <label for="email">Email Address</label>
                     <input type="email"
                            th:field="*{email}"
-                           pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
                            title="Enter a valid email address"
                            id="email" name="email" placeholder="e.g. name@example.com" required>
                     <p class="error" th:if="${#fields.hasErrors('email')}"

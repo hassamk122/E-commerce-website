@@ -1,6 +1,6 @@
 ![Spring Boot](https://repository-images.githubusercontent.com/149085612/76e31b00-782c-11e9-8fdc-eec6e93d055b)
 
-# GYM E-COMMERCE APP
+# GYM E-COMMERCE WEB-APPLICATION
 
 > A full-stack E-commerce web application built using Java 17 and the Spring Boot ecosystem.
 
