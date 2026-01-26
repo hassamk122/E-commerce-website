@@ -23,32 +23,41 @@ public class SecurityConfiguration {
 
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
-        httpSecurity
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
                 .userDetailsService(currentUserDetailsService)
-                .authorizeHttpRequests(auth->auth
-                        .requestMatchers("/", "/register",
-                                "/products/**","/contactus", "/warranty-policy",
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(
+                                "/", "/register",
+                                "/products/**","/contactus","/warranty-policy",
                                 "/terms-and-services","/shipping-info","/return-and-refund",
-                                "/login","/home","/aboutus", "/css/**","/images/**",
-                                "/chat-socket/**"
+                                "/login","/home","/aboutus",
+                                "/css/**","/images/**","/chat-socket/**"
                         ).permitAll()
-                        .requestMatchers("/admin/**","/cart/**").hasRole("ADMIN")
-                                .requestMatchers("/home/**","/cart/**","/orders/**").hasAnyRole("USER","ADMIN")
+
+                        // ADMIN only
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+
+                        // USER + ADMIN
+                        .requestMatchers("/cart/**","/orders/**","/home/**")
+                        .hasAnyRole("USER","ADMIN")
+
                         .anyRequest().authenticated()
                 )
-                .formLogin(form->form
+                .formLogin(form -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/redirectingBasedOnRole",true)
+                        .defaultSuccessUrl("/redirectingBasedOnRole", true)
                         .permitAll()
                 )
-                .logout(logout-> logout
-                        .logoutRequestMatcher(request ->
-                                "GET".equals(request.getMethod()) && request.getRequestURI().equals("/logout")
+                .logout(logout -> logout
+                        .logoutRequestMatcher(req ->
+                                "GET".equals(req.getMethod()) && req.getRequestURI().equals("/logout")
                         )
                         .logoutSuccessUrl("/login?logout")
-                        .permitAll());
-        return httpSecurity.build();
+                        .permitAll()
+                );
+
+        return http.build();
     }
 }
