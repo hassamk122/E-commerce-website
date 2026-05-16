@@ -28,13 +28,11 @@ public class OrderController {
     public String showCheckoutPage(HttpSession session, Model model, RedirectAttributes redirectAttributes) {
         Cart cart = cartService.getCart(session);
 
-        // Check if cart is empty
         if (cart == null || cart.isEmpty()) {
             redirectAttributes.addFlashAttribute("error", "Your cart is empty. Please add items before checkout.");
             return "redirect:/cart";
         }
 
-        // Prepare checkout data
         model.addAttribute("cart", cart);
         model.addAttribute("cartItems", cart.getItems());
         model.addAttribute("productCache", cart.getProductCache());
@@ -46,7 +44,6 @@ public class OrderController {
         model.addAttribute("total", cart.getTotal() + shippingCost);
         model.addAttribute("freeShippingThreshold", FREE_SHIPPING_THRESHOLD);
 
-        // Add empty DTO for form binding
         if (!model.containsAttribute("checkoutDto")) {
             model.addAttribute("checkoutDto", new OrderCheckoutDto());
         }
@@ -62,13 +59,11 @@ public class OrderController {
                                   RedirectAttributes redirectAttributes) {
         Cart cart = cartService.getCart(session);
 
-        // Validate cart
         if (cart == null || cart.isEmpty()) {
             redirectAttributes.addFlashAttribute("error", "Your cart is empty.");
             return "redirect:/cart";
         }
 
-        // If validation errors, return to checkout page
         if (bindingResult.hasErrors()) {
             model.addAttribute("cart", cart);
             model.addAttribute("cartItems", cart.getItems());
@@ -85,15 +80,12 @@ public class OrderController {
         }
 
         try {
-            // Create order from cart
             Order order = orderService.createOrderFromCart(cart, checkoutDto);
 
-            // Clear cart after successful order
             cart.clear();
 
             cartService.clearCart(session);
 
-            // Redirect to order confirmation page
             redirectAttributes.addFlashAttribute("success", "Order placed successfully!");
             return "redirect:/orders/confirmation/" + order.getId();
 

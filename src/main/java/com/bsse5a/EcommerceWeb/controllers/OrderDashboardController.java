@@ -16,7 +16,6 @@ public class OrderDashboardController {
     @Autowired
     private OrderService orderService;
 
-    // Display all orders
     @GetMapping("/orders")
     public String showOrdersDashboard(Model model) {
         List<Order> orders = orderService.getAllOrders();
@@ -24,7 +23,6 @@ public class OrderDashboardController {
         return "orders-dashboard";
     }
 
-    // View order details
     @GetMapping("/orders/view/{id}")
     public String viewOrderDetails(@PathVariable Long id, Model model) {
         Order order = orderService.getOrderById(id);
@@ -32,7 +30,6 @@ public class OrderDashboardController {
         return "order-detail";
     }
 
-    // Update order status
     @GetMapping("/orders/edit/{id}")
     public String editOrder(@PathVariable Long id, Model model) {
         Order order = orderService.getOrderById(id);
@@ -49,7 +46,6 @@ public class OrderDashboardController {
         return "redirect:/admin/dashboard/orders";
     }
 
-    // Delete order
     @GetMapping("/orders/delete/{id}")
     public String deleteOrder(@PathVariable Long id) {
         orderService.deleteOrder(id);

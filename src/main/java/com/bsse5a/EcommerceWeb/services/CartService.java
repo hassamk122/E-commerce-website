@@ -12,7 +12,7 @@ public class CartService {
     private static final String CART_SESSION_KEY = "SHOPPING_CART";
 
     @Autowired
-    private ProductService productService; // Your existing service
+    private ProductService productService;
 
     public Cart getCart(HttpSession session) {
         Cart cart = (Cart) session.getAttribute(CART_SESSION_KEY);

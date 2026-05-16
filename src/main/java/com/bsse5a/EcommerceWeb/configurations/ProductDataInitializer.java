@@ -3,6 +3,7 @@ package com.bsse5a.EcommerceWeb.configurations;
 import com.bsse5a.EcommerceWeb.models.Product;
 import com.bsse5a.EcommerceWeb.models.enums.GymEquipmentCategories;
 import com.bsse5a.EcommerceWeb.respositories.ProductRepository;
+import groovy.util.logging.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +11,9 @@ import org.springframework.context.annotation.Configuration;
 import java.time.LocalDate;
 import java.util.List;
 
+@lombok.extern.slf4j.Slf4j
 @Configuration
+@Slf4j
 public class ProductDataInitializer {
 
     @Bean
@@ -20,7 +23,6 @@ public class ProductDataInitializer {
 
                 List<Product> products = List.of(
 
-                        // -------- STRENGTH / MACHINES --------
                         new Product(null,
                                 "Chest Press / Shoulder Press Trainer (L301)",
                                 "Commercial-grade dual-function chest and shoulder press machine with heavy-duty frame "
@@ -45,7 +47,6 @@ public class ProductDataInitializer {
                                 LocalDate.now()
                         ),
 
-                        // -------- CARDIO --------
                         new Product(null,
                                 "Gym Exercise Bike (B11)",
                                 "High-performance stationary gym bike with adjustable resistance and ergonomic seating. "
@@ -94,7 +95,6 @@ public class ProductDataInitializer {
                                 LocalDate.now()
                         ),
 
-                        // -------- ACCESSORIES --------
                         new Product(null,
                                 "Heavy Jump Rope",
                                 "Weighted heavy jump rope for explosive cardio, stamina building, and strength conditioning. "
@@ -167,7 +167,6 @@ public class ProductDataInitializer {
                                 LocalDate.now()
                         ),
 
-                        // -------- WEIGHTS --------
                         new Product(null,
                                 "7′ Regular One Inch Bar",
                                 "Standard 7-foot one-inch bar designed for weightlifting and strength training. "
@@ -242,7 +241,9 @@ public class ProductDataInitializer {
                 );
 
                 productRepository.saveAll(products);
-                System.out.println("✅ 9 gym products inserted successfully.");
+
+                log.info("gym products inserted successfully.");
+
             }
         };
     }

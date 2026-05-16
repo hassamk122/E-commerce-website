@@ -31,7 +31,6 @@ public class OrderService {
             throw new IllegalArgumentException("Cannot create order from empty cart");
         }
 
-        // Create new order
         Order order = new Order();
         order.setOrderNumber(generateOrderNumber());
         order.setCustomerName(checkoutDto.getCustomerName());
@@ -45,7 +44,6 @@ public class OrderService {
         order.setOrderDate(LocalDateTime.now());
         order.setStatus(Order.OrderStatus.PENDING);
 
-        // Calculate costs
         double subtotal = cart.getTotal();
         double shippingCost = subtotal >= FREE_SHIPPING_THRESHOLD ? 0.0 : STANDARD_SHIPPING_COST;
         double total = subtotal + shippingCost;
@@ -54,7 +52,6 @@ public class OrderService {
         order.setShippingCost(shippingCost);
         order.setTotal(total);
 
-        // Create order items from cart
         Map<Long, ProductDto> productCache = cart.getProductCache();
         for (Map.Entry<Long, Integer> entry : cart.getItems().entrySet()) {
             Long productId = entry.getKey();
@@ -75,7 +72,6 @@ public class OrderService {
             }
         }
 
-        // Save order (cascade will save order items)
         return orderRepository.save(order);
     }
 
@@ -90,13 +86,11 @@ public class OrderService {
     }
 
     private String generateOrderNumber() {
-        // Format: ORD-YYYYMMDD-XXXXX (e.g., ORD-20240115-12345)
         String datePart = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
         String randomPart = String.format("%05d", new Random().nextInt(100000));
         return "ORD-" + datePart + "-" + randomPart;
     }
 
-    // DTO for checkout form data
     public static class OrderCheckoutDto {
         private String customerName;
         private String customerEmail;
@@ -106,10 +100,10 @@ public class OrderService {
         private String postalCode;
         private String notes;
 
-        // Constructors
+
         public OrderCheckoutDto() {}
 
-        // Getters and Setters
+
         public String getCustomerName() { return customerName; }
         public void setCustomerName(String customerName) { this.customerName = customerName; }
 

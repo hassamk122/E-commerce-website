@@ -118,31 +118,26 @@ public class ProductService {
 
         switch (sort.toLowerCase()) {
             case "price_asc":
-                // Price: Low to High
                 return products.stream()
                         .sorted(Comparator.comparing(ProductDto::getPrice))
                         .collect(Collectors.toList());
 
             case "price_desc":
-                // Price: High to Low
                 return products.stream()
                         .sorted(Comparator.comparing(ProductDto::getPrice).reversed())
                         .collect(Collectors.toList());
 
             case "name_asc":
-                // Name: A to Z (optional)
                 return products.stream()
                         .sorted(Comparator.comparing(ProductDto::getTitle, String.CASE_INSENSITIVE_ORDER))
                         .collect(Collectors.toList());
 
             case "name_desc":
-                // Name: Z to A (optional)
                 return products.stream()
                         .sorted(Comparator.comparing(ProductDto::getTitle, String.CASE_INSENSITIVE_ORDER).reversed())
                         .collect(Collectors.toList());
 
             default:
-                // No sorting (keep default order from database)
                 return products;
         }
     }
@@ -152,7 +147,7 @@ public class ProductService {
         return productRepository.findAll()
                 .stream()
                 .limit(limit)
-                .map(productMapper::toDto) // Assuming you have a mapper
+                .map(productMapper::toDto)
                 .collect(Collectors.toList());
     }
 }

@@ -12,16 +12,13 @@ public class GlobalCartAdvice {
     @Autowired
     private CartService cartService;
 
-    /**
-     * This method adds cartItemCount to EVERY page's model automatically
-     * So it's available in index-layout.html and all other templates
-     */
+
     @ModelAttribute("cartItemCount")
     public int addCartCountToModel(HttpSession session) {
         try {
             return cartService.getCartItemCount(session);
         } catch (Exception e) {
-            return 0; // Return 0 if any error or user not logged in
+            return 0;
         }
     }
 }

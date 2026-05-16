@@ -35,10 +35,8 @@ public class SecurityConfiguration {
                                 "/css/**","/images/**","/chat-socket/**"
                         ).permitAll()
 
-                        // ADMIN only
                         .requestMatchers("/admin/**").hasRole("ADMIN")
 
-                        // USER + ADMIN
                         .requestMatchers("/cart/**","/orders/**","/home/**")
                         .hasAnyRole("USER","ADMIN")
 

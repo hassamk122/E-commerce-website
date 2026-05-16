@@ -25,7 +25,6 @@ public class CartController {
     public String viewCart(HttpSession session, Model model) {
         Cart cart = cartService.getCart(session);
 
-        // Prepare cart items for display
         List<CartItemView> cartItems = new ArrayList<>();
         for (Map.Entry<Long, Integer> entry : cart.getItems().entrySet()) {
             ProductDto product = cart.getProductCache().get(entry.getKey());
@@ -90,7 +89,6 @@ public class CartController {
         return "redirect:/cart";
     }
 
-    // Simple view class for Thymeleaf
     public static class CartItemView {
         private ProductDto product;
         private int quantity;

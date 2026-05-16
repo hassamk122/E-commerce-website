@@ -7,9 +7,8 @@ import java.util.Map;
 public class Cart implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    // Map of ProductDto ID to quantity
     private Map<Long, Integer> items = new HashMap<>();
-    // Cache of product details
+
     private Map<Long, ProductDto> productCache = new HashMap<>();
 
     public void addItem(ProductDto product, int quantity) {
